@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #e0e5ec;
+    --foreground: #f0f2f5;
+    --muted: #d1d9e6;
+    --text-primary: #2d3436;
+    --text-muted: #4a5568;
+    --accent: #ff4757;
+    --border-shadow: #babecc;
+    --border-light: #ffffff;
+    --border-dark: #a3b1c6;
+    
+    --shadow-card: 8px 8px 16px #babecc, -8px -8px 16px #ffffff;
+    --shadow-floating: 12px 12px 24px #babecc, -12px -12px 24px #ffffff, inset 1px 1px 0 rgba(255,255,255,0.5);
+    --shadow-pressed: inset 6px 6px 12px #babecc, inset -6px -6px 12px #ffffff;
+    --shadow-recessed: inset 4px 4px 8px #babecc, inset -4px -4px 8px #ffffff;
+    --shadow-sharp: 4px 4px 8px rgba(0,0,0,0.15), -1px -1px 1px rgba(255,255,255,0.8);
+    --shadow-glow: 0 0 12px 2px rgba(255, 71, 87, 0.6);
+    --shadow-glow-green: 0 0 12px 2px rgba(34, 197, 94, 0.6);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--text-primary);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Micro-texture noise overlay for realistic plastic chassis */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  }
+}
+
+/* Custom Industrial Components */
+@layer components {
+  /* Physical Tactile Button */
+  .btn-tactile {
+    background-color: #e0e5ec;
+    color: #2d3436;
+    box-shadow: 6px 6px 12px #babecc, -6px -6px 12px #ffffff;
+    transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .btn-tactile:hover {
+    box-shadow: 8px 8px 16px #babecc, -8px -8px 16px #ffffff;
+    color: #ff4757;
+  }
+  .btn-tactile:active {
+    transform: translateY(2px);
+    box-shadow: inset 4px 4px 8px #babecc, inset -4px -4px 8px #ffffff;
+  }
+
+  /* Primary Accent Button (Safety Orange) */
+  .btn-accent {
+    background-color: #ff4757;
+    color: #ffffff;
+    box-shadow: 4px 4px 10px rgba(166, 50, 60, 0.4), -3px -3px 8px rgba(255, 120, 130, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 150ms cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .btn-accent:hover {
+    background-color: #ff5263;
+    box-shadow: 6px 6px 14px rgba(166, 50, 60, 0.5), -4px -4px 10px rgba(255, 120, 130, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+  .btn-accent:active {
+    transform: translateY(2px);
+    box-shadow: inset 4px 4px 8px rgba(130, 20, 30, 0.6), inset -2px -2px 6px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Neumorphic Card / Bolted Module */
+  .module-card {
+    background-color: #e0e5ec;
+    border-radius: 16px;
+    box-shadow: 8px 8px 16px #babecc, -8px -8px 16px #ffffff;
+    transition: transform 300ms cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 300ms ease;
+  }
+  .module-card:hover {
+    box-shadow: 12px 12px 24px #babecc, -12px -12px 24px #ffffff;
+  }
+
+  /* Recessed Well / Data Slot */
+  .recessed-well {
+    background-color: #e0e5ec;
+    box-shadow: inset 4px 4px 8px #babecc, inset -4px -4px 8px #ffffff;
+    border-radius: 8px;
+  }
+
+  /* Deep Recessed Display / Screen Slot */
+  .screen-well {
+    background-color: #1e272e;
+    box-shadow: inset 5px 5px 12px rgba(0, 0, 0, 0.8), inset -3px -3px 8px rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+  }
+
+  /* CRT Scanlines Overlay */
+  .crt-scanlines {
+    position: relative;
+    overflow: hidden;
+  }
+  .crt-scanlines::after {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; left: 0; bottom: 0; right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.28) 50%);
+    background-size: 100% 4px;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  /* Stamped Technical Tag */
+  .stamped-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.65rem;
+    border-radius: 4px;
+    background-color: #d1d9e6;
+    color: #2d3436;
+    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #ffffff;
+  }
+
+  /* Hardware Vent Slots (3 vertical pill recesses) */
+  .vent-cluster {
+    display: flex;
+    gap: 4px;
+  }
+  .vent-slot {
+    width: 4px;
+    height: 20px;
+    border-radius: 9999px;
+    background-color: #d1d9e6;
+    box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.25), inset -1px -1px 1px rgba(255, 255, 255, 0.8);
+  }
+
+  /* Blueprint Grid Pattern */
+  .blueprint-grid {
+    background-image: 
+      linear-gradient(rgba(99, 110, 114, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 110, 114, 0.08) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Technical Ruler markings */
+  .ruler-ticks {
+    background-image: repeating-linear-gradient(
+      90deg,
+      #babecc,
+      #babecc 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #e0e5ec;
+  box-shadow: inset 2px 2px 4px #babecc, inset -2px -2px 4px #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  background: #c3cbda;
+  border-radius: 5px;
+  border: 2px solid #e0e5ec;
+  box-shadow: 2px 2px 4px #babecc, -2px -2px 4px #ffffff;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff4757;
+}
