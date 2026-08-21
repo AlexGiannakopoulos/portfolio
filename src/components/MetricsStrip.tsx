@@ -14,12 +14,12 @@ export const MetricsStrip: React.FC = () => {
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_10px_rgba(255,71,87,0.9)] animate-pulse" />
             <span className="font-mono text-xs font-extrabold uppercase tracking-widest text-gray-200">
-              OPERATIONAL TELEMETRY & QUANTIFIED IMPACT
+              QUANTIFIED IMPACT
             </span>
           </div>
 
           <div className="hidden sm:flex items-center gap-3">
-            <span className="font-mono text-[10px] text-gray-400">BENCHMARK: EMPIRICAL CV DATA</span>
+            <span className="font-mono text-[10px] text-gray-400">PROFESSIONAL ACHIEVEMENTS</span>
             <VentCluster count={4} />
           </div>
         </div>

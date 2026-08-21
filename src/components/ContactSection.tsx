@@ -180,7 +180,7 @@ export const ContactSection: React.FC = () => {
               <div className="overflow-hidden">
                 <span className="text-xs font-mono text-ink-muted block">LinkedIn Profile</span>
                 <span className="text-sm font-bold text-ink-primary group-hover:text-accent transition-colors truncate block">
-                  alexandros-giannakopoulos99
+                  Alexandros (Nektarios) Giannakopoulos
                 </span>
               </div>
             </a>

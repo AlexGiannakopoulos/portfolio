@@ -23,19 +23,18 @@ export const Footer: React.FC = () => {
               <div className="flex items-center gap-2">
                 <LedIndicator color="green" size="sm" />
                 <span className="font-mono text-xs font-black tracking-widest text-ink-primary drop-shadow-[0_1px_0_#ffffff]">
-                  ANG-OS TELEMETRY DEPLOYMENT // 2026
+                  ANG-OS DEPLOYMENT // 2026
                 </span>
               </div>
               <p className="text-xs text-ink-muted leading-relaxed font-mono">
                 ENGINEER: {PERSONAL_INFO.fullName} <br />
-                MSc Data Analytics & Tech // EY Greece Data Scientist
+                MSc Data Analytics & Technologies // Data Scientist
               </p>
             </div>
 
             {/* Middle: Stamped Serial Plate */}
             <div className="md:col-span-3 flex md:justify-center">
               <div className="p-3 rounded-xl bg-recessed shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff] font-mono text-[10px] text-ink-muted space-y-1">
-                <div>CHASSIS: INDUSTRIAL-SKEUOMORPH</div>
                 <div>HOST: GITHUB-PAGES-IO</div>
                 <div className="text-accent font-bold">STATUS: OPERATIONAL 100%</div>
               </div>
@@ -86,7 +85,7 @@ export const Footer: React.FC = () => {
         <div className="flex flex-col sm:flex-row items-center justify-between text-xs font-mono text-ink-muted/80 gap-2">
           <span>&copy; {new Date().getFullYear()} Alexandros-Nektarios Giannakopoulos. All Systems Verified.</span>
           <div className="flex items-center gap-2">
-            <span>DESIGN STYLE: INDUSTRIAL SKEUOMORPHISM</span>
+            <span>All rights reserved.</span>
             <VentCluster count={2} />
           </div>
         </div>

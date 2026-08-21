@@ -21,7 +21,7 @@ export const ExperienceTimeline: React.FC = () => {
           </h2>
         </div>
         <p className="font-mono text-xs text-ink-muted max-w-md">
-          Chronological record of enterprise deployments, agentic AI systems engineering, and QA infrastructure.
+          Chronological record of agentic AI systems engineering, and QA.
         </p>
       </div>
 

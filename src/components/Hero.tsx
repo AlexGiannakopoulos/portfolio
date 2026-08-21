@@ -15,11 +15,11 @@ export const Hero: React.FC = () => {
           <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-chassis shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff] border border-white/40">
             <LedIndicator color="green" size="sm" />
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink-primary">
-              EY GREECE // DATA SCIENTIST
+              DATA SCIENTIST // EY GREECE 
             </span>
             <span className="text-borderNeumorphic-dark">|</span>
             <span className="font-mono text-[11px] text-accent font-bold">
-              AGENTIC AI & AUTOMATION
+              AGENTIC AI & DATA
             </span>
           </div>
 
@@ -67,7 +67,7 @@ export const Hero: React.FC = () => {
               icon={<Mail size={16} />}
               className="shadow-button-accent"
             >
-              DISPATCH TRANSMISSION
+              CONTACT ME
             </TactileButton>
 
             <TactileButton

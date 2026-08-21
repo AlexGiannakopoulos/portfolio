@@ -21,7 +21,7 @@ export const TelemetryConsole: React.FC = () => {
     },
     {
       type: 'system',
-      text: 'OPERATOR: Alexandros-Nektarios Giannakopoulos [EY Greece / Omilia Alumni]',
+      text: 'OPERATOR: Alexandros-Nektarios Giannakopoulos [EY Greece / Omilia Alumni / University of Greater Manchester Alumni]',
       timestamp: '00:00:02',
     },
     {
@@ -197,7 +197,7 @@ export const TelemetryConsole: React.FC = () => {
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_10px_2px_rgba(52,211,153,0.8)] animate-pulse" />
               <span className="font-mono text-[11px] font-bold uppercase tracking-widest text-emerald-400">
-                ANG-TELEMETRY-UNIT // 01
+                ANG-TELEMETRY-UNIT
               </span>
             </div>
           </div>

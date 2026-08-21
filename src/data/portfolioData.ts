@@ -52,7 +52,7 @@ export const PERSONAL_INFO = {
   linkedin: "https://linkedin.com/in/alexandros-giannakopoulos99",
   github: "https://github.com/AlexGiannakopoulos",
   resumePath: "./Alexandros-Nektarios-Giannakopoulos-CV.pdf",
-  bio: `A Data Scientist MSc candidate with nearly two years of experience bridging Software Engineering and Data Analytics. Specializes in identifying workflow inefficiencies, engineering automated solutions, and deploying production Agentic AI workflows. Engineered enterprise frameworks utilizing Microsoft Agentic Framework and MCP that eliminate manual overhead and deliver measurable business velocity.`,
+  bio: `A Data Scientist MSc candidate with two years of experience bridging Software Engineering and Data Analytics. Specializes in identifying workflow inefficiencies, engineering automated solutions, and deploying production Agentic AI workflows. Engineered enterprise frameworks utilizing Microsoft Agentic Framework and MCP that eliminate manual overhead and deliver measurable business velocity.`,
 };
 
 export const QUANTIFIED_METRICS = [
@@ -167,7 +167,7 @@ export const SPECIAL_ACADEMIC_CREDENTIALS = [
   {
     title: "University Validation Board Member",
     institution: "University of Greater Manchester & New York College",
-    description: "Selected to participate in the formal academic validation process for the new MSc in Big Data and New Technologies program.",
+    description: "Selected to participate in the formal academic validation process for the new MSc in Data Analytics and Technologies program.",
     stamp: "OFFICIAL VALIDATION BOARD",
   },
 ];
@@ -261,7 +261,7 @@ export const FEATURED_CASE_STUDIES: ProjectCaseStudy[] = [
     category: "Agentic AI & Orchestration",
     badge: "MISSION CRITICAL",
     status: "PRODUCTION",
-    description: "Engineered autonomous agent workflows built on top of the Microsoft Agentic Framework for a premier financial banking institution to automate complex multi-step document verification and data extraction procedures.",
+    description: "Engineered autonomous agent workflows built on top of the Microsoft Agentic Framework for a major Greek financial banking institution to automate complex multi-step document verification and data extraction procedures.",
     architecture: [
       "Multi-agent task decomposition and state handoff",
       "Dynamic tool-calling with deterministic fallback safeguards",
@@ -293,7 +293,7 @@ export const FEATURED_CASE_STUDIES: ProjectCaseStudy[] = [
     category: "Data Engineering & NLP",
     badge: "ANALYTICS ENGINE",
     status: "PRODUCTION",
-    description: "Engineered resilient data ingestion pipelines utilizing Playwright, BeautifulSoup, and Pandas to scrape dynamic web portals at scale, paired with PyTorch NLP sentiment models to gauge market sentiment trends.",
+    description: "Engineered resilient data ingestion pipelines utilizing Playwright, BeautifulSoup, and Pandas to scrape dynamic web portals at scale, paired with PyTorch NLP models to analyze market sentiment trends.",
     architecture: [
       "Headless Playwright clusters bypassing complex anti-bot walls",
       "Structured ETL pipeline loading into PostgreSQL & Neo4j graph nodes",
