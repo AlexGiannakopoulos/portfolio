@@ -32,13 +32,13 @@ export const TelemetryConsole: React.FC = () => {
   ]);
 
   const [activeAgentStep, setActiveAgentStep] = useState(1);
-  const terminalEndRef = useRef<HTMLDivElement>(null);
+  const terminalContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-scroll terminal
+  // Auto-scroll terminal container (without scrolling the entire window)
   useEffect(() => {
-    if (activeTab === 'TERMINAL') {
-      terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (activeTab === 'TERMINAL' && terminalContainerRef.current) {
+      terminalContainerRef.current.scrollTop = terminalContainerRef.current.scrollHeight;
     }
   }, [history, activeTab]);
 
@@ -228,7 +228,10 @@ export const TelemetryConsole: React.FC = () => {
           {/* TAB 1: INTERACTIVE TERMINAL */}
           {activeTab === 'TERMINAL' && (
             <div className="h-[280px] sm:h-[320px] flex flex-col justify-between font-mono text-xs text-gray-300">
-              <div className="overflow-y-auto space-y-2 pr-1 scrollbar-thin scrollbar-thumb-gray-700">
+              <div
+                ref={terminalContainerRef}
+                className="overflow-y-auto space-y-2 pr-1 scrollbar-thin scrollbar-thumb-gray-700 flex-1"
+              >
                 {history.map((item, idx) => (
                   <div key={idx} className="leading-relaxed">
                     {item.type === 'system' && (
@@ -260,7 +263,6 @@ export const TelemetryConsole: React.FC = () => {
                     )}
                   </div>
                 ))}
-                <div ref={terminalEndRef} />
               </div>
 
               {/* Recessed Prompt Input */}

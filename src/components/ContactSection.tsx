@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { Mail, Phone, Send, Copy, Check, Terminal, ExternalLink } from 'lucide-react';
+import { Mail, Phone, Send, Copy, Check, Terminal, ExternalLink, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { PERSONAL_INFO } from '../data/portfolioData';
 import { CornerScrews, VentCluster } from './common/Screws';
 import { LedIndicator } from './common/LedIndicator';
 import { TactileButton } from './common/TactileButton';
 import { GithubIcon, LinkedinIcon } from './common/Icons';
+
+type SubmitStatus = 'IDLE' | 'TRANSMITTING' | 'SUCCESS' | 'ERROR';
 
 export const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +18,8 @@ export const ContactSection: React.FC = () => {
   });
 
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
-  const [isTransmitted, setIsTransmitted] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<SubmitStatus>('IDLE');
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const handleCopy = (text: string, key: string) => {
     navigator.clipboard.writeText(text);
@@ -24,28 +27,54 @@ export const ContactSection: React.FC = () => {
     setTimeout(() => setCopiedKey(null), 2500);
   };
 
-  const handleFormSubmit = (e: React.FormEvent) => {
+  const handleFormSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.message.trim()) return;
+    if (!formData.message.trim() || !formData.email.trim() || !formData.name.trim()) return;
 
-    // Create mailto link with formatted body
-    const subject = encodeURIComponent(formData.subject || `Inquiry from ${formData.name || 'Portfolio Visitor'}`);
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    );
-    
-    // Trigger confetti
-    confetti({
-      particleCount: 50,
-      spread: 60,
-      origin: { y: 0.8 },
-      colors: ['#ff4757', '#e0e5ec', '#2d3436'],
-    });
+    setSubmitStatus('TRANSMITTING');
+    setErrorMessage('');
 
-    setIsTransmitted(true);
-    setTimeout(() => {
-      window.location.href = `mailto:${PERSONAL_INFO.email}?subject=${subject}&body=${body}`;
-    }, 400);
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject || `Inquiry from ${formData.name}`,
+          message: formData.message,
+          from_name: `${formData.name} (Portfolio Inquiry)`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('SUCCESS');
+        confetti({
+          particleCount: 65,
+          spread: 70,
+          origin: { y: 0.75 },
+          colors: ['#ff4757', '#2ed573', '#e0e5ec', '#2d3436'],
+        });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        setSubmitStatus('ERROR');
+        setErrorMessage(result.message || 'Signal transmission failed. Please try again.');
+      }
+    } catch {
+      setSubmitStatus('ERROR');
+      setErrorMessage('Network connection error. Please verify connection or use direct email.');
+    }
   };
 
   return (
@@ -265,16 +294,45 @@ export const ContactSection: React.FC = () => {
               </div>
             </div>
 
+            {submitStatus === 'SUCCESS' && (
+              <div className="p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 font-mono text-xs flex items-center gap-2">
+                <CheckCircle2 size={16} className="shrink-0 text-emerald-500" />
+                <span>SIGNAL RECEIVED // Transmission delivered successfully to Alexandros.</span>
+              </div>
+            )}
+
+            {submitStatus === 'ERROR' && (
+              <div className="p-3 rounded-xl bg-accent/10 border border-accent/30 text-accent font-mono text-xs flex items-center gap-2">
+                <AlertCircle size={16} className="shrink-0 text-accent" />
+                <span>SIGNAL FAILURE // {errorMessage || 'Could not dispatch message. Please retry or use direct email.'}</span>
+              </div>
+            )}
+
             <div className="pt-2">
               <TactileButton
-                variant="primary"
+                variant={submitStatus === 'SUCCESS' ? 'chassis' : 'primary'}
                 size="lg"
                 fullWidth
                 type="submit"
-                icon={<Send size={16} />}
-                className="shadow-button-accent"
+                disabled={submitStatus === 'TRANSMITTING'}
+                icon={
+                  submitStatus === 'TRANSMITTING' ? (
+                    <Loader2 size={16} className="animate-spin" />
+                  ) : submitStatus === 'SUCCESS' ? (
+                    <Check size={16} className="text-emerald-600" />
+                  ) : (
+                    <Send size={16} />
+                  )
+                }
+                className={submitStatus === 'SUCCESS' ? 'border-emerald-500/40 text-emerald-700' : 'shadow-button-accent'}
               >
-                {isTransmitted ? 'TRANSMITTING VIA MAILTO...' : 'DISPATCH TRANSMISSION'}
+                {submitStatus === 'TRANSMITTING'
+                  ? 'DISPATCHING SIGNAL...'
+                  : submitStatus === 'SUCCESS'
+                  ? 'TRANSMISSION CONFIRMED (SEND ANOTHER)'
+                  : submitStatus === 'ERROR'
+                  ? 'RETRY TRANSMISSION'
+                  : 'DISPATCH TRANSMISSION'}
               </TactileButton>
             </div>
           </form>
