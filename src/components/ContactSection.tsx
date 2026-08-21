@@ -42,7 +42,7 @@ export const ContactSection: React.FC = () => {
           Accept: 'application/json',
         },
         body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+          access_key: '4cb47120-8200-4e8f-8d01-f551815a4258',
           name: formData.name,
           email: formData.email,
           subject: formData.subject || `Inquiry from ${formData.name}`,
