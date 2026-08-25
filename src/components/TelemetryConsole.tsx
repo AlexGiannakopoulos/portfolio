@@ -42,9 +42,9 @@ interface ChatMessage {
 const QUICK_PROMPTS = [
   { label: '✨ About Alex', query: 'Tell me about Alexandros' },
   { label: '💼 Experience', query: 'What is his work experience?' },
-  { label: '🎯 Top Skills', query: 'What are his key skills & tech stack?' },
+  { label: '🎯 Top Skills', query: 'What are his main skills & tech stack?' },
+  { label: '🎓 Education', query: 'Tell me about his education' },
   { label: '📊 Key Impact', query: 'Show his quantified achievements' },
-  { label: '🎓 Education', query: 'What is his educational background?' },
   { label: '📄 Resume (PDF)', query: 'How can I download his CV?' },
   { label: '📬 Contact Info', query: 'How do I get in touch with him?' },
 ];
@@ -194,7 +194,7 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
       q.includes('experience') ||
       q.includes('job') ||
       q.includes('work') ||
-      q.includes('ey') ||
+      /\bey\b/.test(q) ||
       q.includes('omilia') ||
       q.includes('career') ||
       q.includes('history') ||
@@ -231,7 +231,7 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
           },
           {
             label: 'Check Top Skills',
-            onClick: () => handleSend('What are his key skills & tech stack?'),
+            onClick: () => handleSend('What are his main skills & tech stack?'),
             icon: <Code2 size={13} />,
           },
         ],
@@ -456,7 +456,7 @@ If the download did not start automatically, please click the button below:`,
         actions: [
           {
             label: 'Send Email',
-            href: `mailto:${PERSONAL_INFO.email}`,
+            href: '#contact',
             icon: <Mail size={13} />,
             primary: true,
           },
@@ -486,7 +486,7 @@ Would you like to review his work experience, top skills, or download his resume
         },
         {
           label: 'Top Skills',
-          onClick: () => handleSend('What are his key skills & tech stack?'),
+          onClick: () => handleSend('What are his main skills & tech stack?'),
           icon: <Code2 size={13} />,
         },
         {
