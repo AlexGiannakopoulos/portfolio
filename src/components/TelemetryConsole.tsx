@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
-  Send,
   Bot,
   User,
   Sparkles,
@@ -52,13 +51,11 @@ const QUICK_PROMPTS = [
 
 export const TelemetryConsole: React.FC = () => {
   const [activeTab, setActiveTab] = useState<AssistantTab>('CHAT');
-  const [inputVal, setInputVal] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const [activeAgentStep, setActiveAgentStep] = useState(1);
   const [isAgentSimulating, setIsAgentSimulating] = useState(false);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const chatContainerRef = useRef<HTMLDivElement>(null);
 
   const getTimestamp = () => {
     const now = new Date();
@@ -84,7 +81,7 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
         },
         {
           label: 'Send Email',
-          href: `mailto:${PERSONAL_INFO.email}`,
+          href: '#contact',
           icon: <Mail size={13} />,
         },
       ],
@@ -93,10 +90,10 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
 
   const [messages, setMessages] = useState<ChatMessage[]>(initialMessages);
 
-  // Auto-scroll chat to latest message
+  // Auto-scroll chat container directly without scrolling the browser window
   useEffect(() => {
-    if (activeTab === 'CHAT' && messagesEndRef.current) {
-      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (activeTab === 'CHAT' && chatContainerRef.current) {
+      chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
   }, [messages, isTyping, activeTab]);
 
@@ -503,8 +500,8 @@ Would you like to review his work experience, top skills, or download his resume
     };
   };
 
-  const handleSend = (textToSend?: string) => {
-    const query = (textToSend || inputVal).trim();
+  const handleSend = (textToSend: string) => {
+    const query = textToSend.trim();
     if (!query) return;
 
     const userMsg: ChatMessage = {
@@ -515,7 +512,6 @@ Would you like to review his work experience, top skills, or download his resume
     };
 
     setMessages((prev) => [...prev, userMsg]);
-    setInputVal('');
     setIsTyping(true);
 
     if (activeTab !== 'CHAT') {
@@ -553,12 +549,6 @@ Would you like to review his work experience, top skills, or download his resume
         ],
       },
     ]);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      handleSend();
-    }
   };
 
   const renderFormattedText = (content: string) => {
@@ -687,7 +677,10 @@ Would you like to review his work experience, top skills, or download his resume
         {activeTab === 'CHAT' && (
           <div className="flex-1 flex flex-col min-h-0 pt-2">
             {/* Messages Scroll Area */}
-            <div className="flex-1 overflow-y-auto px-1 py-2 space-y-3 scrollbar-thin scrollbar-thumb-borderNeumorphic-dark/40 pr-2">
+            <div
+              ref={chatContainerRef}
+              className="flex-1 overflow-y-auto px-1 py-2 space-y-3 scrollbar-thin scrollbar-thumb-borderNeumorphic-dark/40 pr-2"
+            >
               {messages.map((msg) => (
                 <div
                   key={msg.id}
@@ -719,7 +712,7 @@ Would you like to review his work experience, top skills, or download his resume
                               <a
                                 key={aIdx}
                                 href={act.href}
-                                target={act.href.startsWith('mailto:') ? undefined : '_blank'}
+                                target={act.href.startsWith('mailto:') || act.href.startsWith('#') ? undefined : '_blank'}
                                 rel="noopener noreferrer"
                                 download={act.download}
                                 className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-mono text-[10px] font-bold tracking-wide transition-all duration-150 active:translate-y-0.5 ${
@@ -782,8 +775,6 @@ Would you like to review his work experience, top skills, or download his resume
                   </div>
                 </div>
               )}
-
-              <div ref={messagesEndRef} />
             </div>
 
             {/* Recruiter Quick-Prompt Chips */}
@@ -801,28 +792,7 @@ Would you like to review his work experience, top skills, or download his resume
               </div>
             </div>
 
-            {/* Chat Input Pill Bar */}
-            <div className="relative pt-1">
-              <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-recessed shadow-[inset_2px_2px_5px_#babecc,inset_-2px_-2px_5px_#ffffff] border border-white/40">
-                <input
-                  ref={inputRef}
-                  type="text"
-                  value={inputVal}
-                  onChange={(e) => setInputVal(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Ask a question about Alex (e.g. skills, experience)..."
-                  className="w-full bg-transparent px-3 text-xs text-ink-primary placeholder:text-ink-muted/60 focus:outline-none font-sans"
-                />
-                <button
-                  onClick={() => handleSend()}
-                  disabled={!inputVal.trim() || isTyping}
-                  className="w-8 h-8 rounded-xl bg-accent text-white flex items-center justify-center shrink-0 shadow-button-accent hover:bg-[#ff5263] active:translate-y-0.5 disabled:opacity-40 disabled:pointer-events-none transition-all"
-                  title="Send message"
-                >
-                  <Send size={13} />
-                </button>
-              </div>
-            </div>
+
           </div>
         )}
 
