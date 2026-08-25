@@ -71,7 +71,7 @@ export const TelemetryConsole: React.FC = () => {
       timestamp: getTimestamp(),
       text: `👋 Hello! I'm **Alex AI Assistant**.
 
-I'm here to assist recruiters and hiring managers. Ask me anything about Alexandros's work as a **Data Scientist at EY Greece**, his expertise in **Agentic AI & Python**, or choose a topic below:`,
+You can view information about Alexandros's work as a **Data Scientist at EY Greece**, his expertise in **Agentic AI & Python**, or choose a topic below:`,
       actions: [
         {
           label: 'Download CV (PDF)',
@@ -177,13 +177,13 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
         timestamp: time,
         text: `Here is Alexandros's higher education background:
 
-🎓 **MSc in Data Analytics and Technologies** *(Active MSc Candidate)*
+🎓 **MSc in Data Analytics and Technologies** **(Active MSc Candidate)**
 • **Institution**: University of Greater Manchester (UK)
 • **Affiliation**: In attendance at New York College, Athens
 • **Period**: Nov. 2025 – Jan 2027 | Athens / United Kingdom
 • **Curriculum & Focus**: Postgraduate focus on predictive modeling, enterprise data pipelines, deep learning architectures, statistical hypothesis testing, and CRISP-DM methodology.
 
-🎓 **BSc (Hons) in Computing (Data Analyst)** *(Graduated with Honors)*
+🎓 **BSc (Hons) in Computing (Data Analyst)** **(Graduated with Honors)**
 • **Institution**: University of Greater Manchester (UK)
 • **Affiliation**: In attendance at New York College, Athens
 • **Period**: Oct. 2022 – May 2025 | Athens / United Kingdom
@@ -233,17 +233,17 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
         timestamp: time,
         text: `Here is a summary of Alexandros's career history:
 
-1. **EY Greece** — *Data Scientist* (March 2026 – Present)
+1. **EY Greece** — **Data Scientist** (March 2026 – Present)
    • Engineered agentic AI workflows with **Microsoft Agentic Framework** for major banking clients
    • Boosted cross-functional team efficiency by **+20%**
    • Authored technical specifications for high-throughput enterprise pipelines
 
-2. **Omilia Ltd.** — *Delivery QA Engineer* (Oct 2024 – March 2026)
+2. **Omilia Ltd.** — **Delivery QA Engineer** (Oct 2024 – March 2026)
    • Pioneered testing framework utilizing **Model Context Protocol (MCP)**
    • Reduced post-release bugs by **25%** and saved **2h+ daily** per engineer
    • Built automated CI/CD pipelines & Python testing scripts
 
-3. **New York College** — *IT Support Technician* (2022 – 2023)
+3. **New York College** — **IT Support Technician** (2022 – 2023)
    • Supported 500+ students and campus lab network infrastructure`,
         actions: [
           {
@@ -254,7 +254,7 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
             primary: true,
           },
           {
-            label: '🎓 Higher Education',
+            label: '🎓 Education',
             onClick: () => handleSend('Tell me about his education'),
             icon: <GraduationCap size={13} />,
           },
@@ -568,7 +568,7 @@ Would you like to review his work experience, top skills, or download his resume
         sender: 'bot',
         category: 'welcome',
         timestamp: getTimestamp(),
-        text: `Conversation reset. How can I assist your candidate review today?`,
+        text: `Conversation reset. How can I assist you today?`,
         actions: [
           {
             label: 'Download Resume (PDF)',
