@@ -1,4 +1,4 @@
-# Alexandros-Nektarios Giannakopoulos — Industrial Skeuomorphism Portfolio & CV
+# Alexandros-Nektarios Giannakopoulos — Portfolio & CV
 
 [![Deploy to GitHub Pages](https://github.com/AlexGiannakopoulos/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/AlexGiannakopoulos/portfolio/actions/workflows/deploy.yml)
 [![Live Site](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-blue.svg)](https://AlexGiannakopoulos.github.io/portfolio/)

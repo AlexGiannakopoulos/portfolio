@@ -11,7 +11,7 @@ export const Hero: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column (60% on desktop: 7 cols) */}
         <div className="lg:col-span-7 space-y-6">
-          {/* Top Industrial Identity Plate */}
+          {/* Top Identity Plate */}
           <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-chassis shadow-[inset_2px_2px_4px_#babecc,inset_-2px_-2px_4px_#ffffff] border border-white/40">
             <LedIndicator color="green" size="sm" />
             <span className="font-mono text-xs font-bold uppercase tracking-wider text-ink-primary">
