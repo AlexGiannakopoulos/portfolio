@@ -14,6 +14,7 @@ import {
   Play,
   RotateCcw,
   Code2,
+  GraduationCap,
 } from 'lucide-react';
 import {
   PERSONAL_INFO,
@@ -123,12 +124,17 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
         timestamp: time,
         text: `Hello! 👋 How can I help you today? You can ask about:
 
+• **Higher Education** (MSc & BSc with Honors)
 • **Current Role & Experience** (EY Greece & Omilia)
 • **Technical Skills** (Agentic AI, Python, MCP, PyTorch, SQL)
-• **Higher Education** (MSc & BSc with Honors)
 • **Quantified Impact** (+20% efficiency, -25% bug reduction)
 • **Resume Download** or **Direct Contact Details**`,
         actions: [
+          {
+            label: '🎓 View Education',
+            onClick: () => handleSend('Tell me about his education'),
+            icon: <GraduationCap size={13} />,
+          },
           {
             label: 'Quick Overview',
             onClick: () => handleSend('Tell me about Alexandros'),
@@ -145,22 +151,24 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
       };
     }
 
-    // 2. Education / Degree
+    // 2. Education / Degree / Academic Background
     if (
       q.includes('education') ||
       q.includes('degree') ||
+      q.includes('academic') ||
       q.includes('university') ||
       q.includes('msc') ||
       q.includes('bsc') ||
-      q.includes('college') ||
+      q.includes('bachelor') ||
+      q.includes('master') ||
       q.includes('study') ||
       q.includes('studies') ||
-      q.includes('academic') ||
       q.includes('thesis') ||
+      q.includes('curriculum') ||
       q.includes('board') ||
       q.includes('validation') ||
-      q.includes('bachelor') ||
-      q.includes('master')
+      q.includes('graduat') ||
+      q.includes('diploma')
     ) {
       return {
         id: `bot-${Date.now()}`,
@@ -169,20 +177,20 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
         timestamp: time,
         text: `Here is Alexandros's higher education background:
 
-🎓 **MSc in Data Analytics and Technologies** *(Active Candidate)*
+🎓 **MSc in Data Analytics and Technologies** *(Active MSc Candidate)*
 • **Institution**: University of Greater Manchester (UK)
 • **Affiliation**: In attendance at New York College, Athens
-• **Period**: Nov. 2025 – Jan 2027
-• **Focus**: Deep learning architectures, predictive modeling, big data pipelines, statistical hypothesis testing, and CRISP-DM methodology.
+• **Period**: Nov. 2025 – Jan 2027 | Athens / United Kingdom
+• **Curriculum & Focus**: Postgraduate focus on predictive modeling, enterprise data pipelines, deep learning architectures, statistical hypothesis testing, and CRISP-DM methodology.
 
 🎓 **BSc (Hons) in Computing (Data Analyst)** *(Graduated with Honors)*
 • **Institution**: University of Greater Manchester (UK)
 • **Affiliation**: In attendance at New York College, Athens
-• **Period**: Oct. 2022 – May 2025
-• **Focus**: Algorithms, relational & NoSQL databases, OOP design patterns, distributed data systems, and machine learning analytics.
+• **Period**: Oct. 2022 – May 2025 | Athens / United Kingdom
+• **Curriculum & Focus**: Rigorous curriculum spanning algorithms, relational & NoSQL databases, object-oriented design patterns, distributed data systems, and machine learning analytics.
 
 🏅 **Official Validation Board Member**:
-Appointed Member of the formal **University MSc Validation Board** for academic curriculum approval.`,
+• **University of Greater Manchester & New York College**: Selected to participate in the formal academic validation process for the new MSc in Data Analytics and Technologies program.`,
         actions: [
           {
             label: 'Download CV (PDF)',
@@ -190,6 +198,11 @@ Appointed Member of the formal **University MSc Validation Board** for academic 
             download: 'Alexandros-Nektarios-Giannakopoulos-CV.pdf',
             icon: <Download size={13} />,
             primary: true,
+          },
+          {
+            label: 'View Work Experience',
+            onClick: () => handleSend('What is his work experience?'),
+            icon: <Briefcase size={13} />,
           },
           {
             label: 'Check Top Skills',
@@ -239,6 +252,11 @@ Appointed Member of the formal **University MSc Validation Board** for academic 
             download: 'Alexandros-Nektarios-Giannakopoulos-CV.pdf',
             icon: <Download size={13} />,
             primary: true,
+          },
+          {
+            label: '🎓 Higher Education',
+            onClick: () => handleSend('Tell me about his education'),
+            icon: <GraduationCap size={13} />,
           },
           {
             label: 'Check Top Skills',
@@ -461,6 +479,11 @@ If the download did not start automatically, please click the button below:`,
 • **Education**: MSc in Data Analytics Candidate & BSc (Hons) Computing
 • **Status**: Active & Open to Hybrid/Remote Collaborations`,
         actions: [
+          {
+            label: '🎓 Higher Education',
+            onClick: () => handleSend('Tell me about his education'),
+            icon: <GraduationCap size={13} />,
+          },
           {
             label: 'View Experience',
             onClick: () => handleSend('What is his work experience?'),
