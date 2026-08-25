@@ -125,8 +125,8 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
 
 • **Current Role & Experience** (EY Greece & Omilia)
 • **Technical Skills** (Agentic AI, Python, MCP, PyTorch, SQL)
+• **Higher Education** (MSc & BSc with Honors)
 • **Quantified Impact** (+20% efficiency, -25% bug reduction)
-• **Education & Credentials** (MSc & BSc with Honors)
 • **Resume Download** or **Direct Contact Details**`,
         actions: [
           {
@@ -145,45 +145,56 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
       };
     }
 
-    // 2. About / Summary / Bio
+    // 2. Education / Degree
     if (
-      q.includes('about') ||
-      q.includes('who') ||
-      q.includes('bio') ||
-      q.includes('summary') ||
-      q.includes('intro') ||
-      q.includes('alex') ||
-      q.includes('background')
+      q.includes('education') ||
+      q.includes('degree') ||
+      q.includes('university') ||
+      q.includes('msc') ||
+      q.includes('bsc') ||
+      q.includes('college') ||
+      q.includes('study') ||
+      q.includes('studies') ||
+      q.includes('academic') ||
+      q.includes('thesis') ||
+      q.includes('board') ||
+      q.includes('validation') ||
+      q.includes('bachelor') ||
+      q.includes('master')
     ) {
       return {
         id: `bot-${Date.now()}`,
         sender: 'bot',
-        category: 'about',
+        category: 'education',
         timestamp: time,
-        text: `**Alexandros - Nektarios Giannakopoulos** is a **Data Scientist & Agentic AI Engineer** (MSc candidate) based in **Athens, Greece**.
+        text: `Here is Alexandros's higher education background:
 
-• **Current Role**: Data Scientist at **EY Greece** (March 2026 – Present)
-• **Specialization**: Enterprise Agentic AI frameworks, automated testing with MCP, Python, and data intelligence
-• **Key Metric**: +20% team velocity boost for major banking clients
-• **Education**: MSc in Data Analytics Candidate & BSc (Hons) Computing
-• **Status**: Active & Open to Hybrid/Remote Collaborations`,
+🎓 **MSc in Data Analytics and Technologies** *(Active Candidate)*
+• **Institution**: University of Greater Manchester (UK)
+• **Affiliation**: In attendance at New York College, Athens
+• **Period**: Nov. 2025 – Jan 2027
+• **Focus**: Deep learning architectures, predictive modeling, big data pipelines, statistical hypothesis testing, and CRISP-DM methodology.
+
+🎓 **BSc (Hons) in Computing (Data Analyst)** *(Graduated with Honors)*
+• **Institution**: University of Greater Manchester (UK)
+• **Affiliation**: In attendance at New York College, Athens
+• **Period**: Oct. 2022 – May 2025
+• **Focus**: Algorithms, relational & NoSQL databases, OOP design patterns, distributed data systems, and machine learning analytics.
+
+🏅 **Official Validation Board Member**:
+Appointed Member of the formal **University MSc Validation Board** for academic curriculum approval.`,
         actions: [
           {
-            label: 'View Experience',
-            onClick: () => handleSend('What is his work experience?'),
-            icon: <Briefcase size={13} />,
-          },
-          {
-            label: 'Download CV',
+            label: 'Download CV (PDF)',
             href: PERSONAL_INFO.resumePath,
             download: 'Alexandros-Nektarios-Giannakopoulos-CV.pdf',
             icon: <Download size={13} />,
             primary: true,
           },
           {
-            label: 'Contact Info',
-            onClick: () => handleSend('How do I get in touch with him?'),
-            icon: <Mail size={13} />,
+            label: 'Check Top Skills',
+            onClick: () => handleSend('What are his main skills & tech stack?'),
+            icon: <Code2 size={13} />,
           },
         ],
       };
@@ -326,50 +337,7 @@ I'm here to assist recruiters and hiring managers. Ask me anything about Alexand
       };
     }
 
-    // 6. Education / Degree
-    if (
-      q.includes('education') ||
-      q.includes('degree') ||
-      q.includes('university') ||
-      q.includes('msc') ||
-      q.includes('bsc') ||
-      q.includes('college') ||
-      q.includes('study') ||
-      q.includes('studies') ||
-      q.includes('academic') ||
-      q.includes('thesis') ||
-      q.includes('board') ||
-      q.includes('validation')
-    ) {
-      return {
-        id: `bot-${Date.now()}`,
-        sender: 'bot',
-        category: 'education',
-        timestamp: time,
-        text: `Alexandros's academic credentials:
-
-🎓 **MSc in Data Analytics and Technologies**
-• *University of Greater Manchester (UK)* (2025 – 2027)
-• Focus: Deep learning, predictive modeling, big data pipelines, CRISP-DM
-
-🎓 **BSc (Hons) in Computing (Data Analyst)**
-• *University of Greater Manchester (UK)* (2022 – 2025)
-• Graduated with Honors
-
-🏅 **Special Recognition**: Appointed Member of the formal **University MSc Validation Board** for academic curriculum approval.`,
-        actions: [
-          {
-            label: 'Download Resume (PDF)',
-            href: PERSONAL_INFO.resumePath,
-            download: 'Alexandros-Nektarios-Giannakopoulos-CV.pdf',
-            icon: <Download size={13} />,
-            primary: true,
-          },
-        ],
-      };
-    }
-
-    // 7. Languages
+    // 6. Languages
     if (q.includes('language') || q.includes('greek') || q.includes('english') || q.includes('french')) {
       const langs = SPOKEN_LANGUAGES.map((l) => `• **${l.name}**: ${l.proficiency} (${l.level})`).join('\n');
       return {
@@ -392,7 +360,7 @@ ${langs}`,
       };
     }
 
-    // 8. Resume / CV / Download
+    // 7. Resume / CV / Download
     if (
       q.includes('cv') ||
       q.includes('resume') ||
@@ -426,7 +394,7 @@ If the download did not start automatically, please click the button below:`,
       };
     }
 
-    // 9. Contact / Email / LinkedIn / Phone
+    // 8. Contact / Email / LinkedIn / Phone
     if (
       q.includes('contact') ||
       q.includes('email') ||
@@ -464,6 +432,51 @@ If the download did not start automatically, please click the button below:`,
             label: 'Open LinkedIn Profile',
             href: PERSONAL_INFO.linkedin,
             icon: <ExternalLink size={13} />,
+          },
+        ],
+      };
+    }
+
+    // 9. About / Summary / Bio / Overview (generic catch-all for Alex's profile)
+    if (
+      q.includes('about') ||
+      q.includes('who') ||
+      q.includes('bio') ||
+      q.includes('summary') ||
+      q.includes('intro') ||
+      q.includes('alex') ||
+      q.includes('background') ||
+      q.includes('overview')
+    ) {
+      return {
+        id: `bot-${Date.now()}`,
+        sender: 'bot',
+        category: 'about',
+        timestamp: time,
+        text: `**Alexandros - Nektarios Giannakopoulos** is a **Data Scientist & Agentic AI Engineer** (MSc candidate) based in **Athens, Greece**.
+
+• **Current Role**: Data Scientist at **EY Greece** (March 2026 – Present)
+• **Specialization**: Enterprise Agentic AI frameworks, automated testing with MCP, Python, and data intelligence
+• **Key Metric**: +20% team velocity boost for major banking clients
+• **Education**: MSc in Data Analytics Candidate & BSc (Hons) Computing
+• **Status**: Active & Open to Hybrid/Remote Collaborations`,
+        actions: [
+          {
+            label: 'View Experience',
+            onClick: () => handleSend('What is his work experience?'),
+            icon: <Briefcase size={13} />,
+          },
+          {
+            label: 'Download CV',
+            href: PERSONAL_INFO.resumePath,
+            download: 'Alexandros-Nektarios-Giannakopoulos-CV.pdf',
+            icon: <Download size={13} />,
+            primary: true,
+          },
+          {
+            label: 'Contact Info',
+            onClick: () => handleSend('How do I get in touch with him?'),
+            icon: <Mail size={13} />,
           },
         ],
       };
