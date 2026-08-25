@@ -131,7 +131,7 @@ You can view information about Alexandros's work as a **Data Scientist at EY Gre
 • **Resume Download** or **Direct Contact Details**`,
         actions: [
           {
-            label: '🎓 View Education',
+            label: 'View Education',
             onClick: () => handleSend('Tell me about his education'),
             icon: <GraduationCap size={13} />,
           },
@@ -254,7 +254,7 @@ You can view information about Alexandros's work as a **Data Scientist at EY Gre
             primary: true,
           },
           {
-            label: '🎓 Education',
+            label: 'Education',
             onClick: () => handleSend('Tell me about his education'),
             icon: <GraduationCap size={13} />,
           },
@@ -480,7 +480,7 @@ If the download did not start automatically, please click the button below:`,
 • **Status**: Active & Open to Hybrid/Remote Collaborations`,
         actions: [
           {
-            label: '🎓 Higher Education',
+            label: 'Education',
             onClick: () => handleSend('Tell me about his education'),
             icon: <GraduationCap size={13} />,
           },
