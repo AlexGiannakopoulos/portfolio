@@ -3,29 +3,7 @@
 [![Deploy to GitHub Pages](https://github.com/AlexGiannakopoulos/portfolio/actions/workflows/deploy.yml/badge.svg)](https://github.com/AlexGiannakopoulos/portfolio/actions/workflows/deploy.yml)
 [![Live Site](https://img.shields.io/badge/Hosted%20on-GitHub%20Pages-blue.svg)](https://AlexGiannakopoulos.github.io/portfolio/)
 
-A high-performance personal portfolio and interactive CV for **Alexandros-Nektarios Giannakopoulos** (Data Scientist & Agentic AI Engineer at EY Greece, MSc Data Analytics Candidate), engineered with the **Industrial Skeuomorphism / Realism** design system.
-
----
-
-## 🛠️ Design System & Aesthetic Highlights
-
-- **Light Engine**: Top-left 45-degree directional illumination with tactile neumorphic dual-shadows.
-- **Palette**:
-  - `Chassis Base`: `#e0e5ec` (Matte ABS polymer feel)
-  - `Raised Panels`: `#f0f2f5`
-  - `Recessed Wells`: `#d1d9e6`
-  - `Primary Ink`: `#2d3436` (Charcoal)
-  - `Safety Orange / Braun Red`: `#ff4757` (Interactive triggers, emergency actuators, LED status)
-  - `Dark Technical Plates`: `#283038`
-- **Hardware Accents**:
-  - 4-Corner machined screw heads (radial gradient fasteners at 12px offsets).
-  - Recessed pill-shaped triple ventilation arrays.
-  - Hardware LEDs with colored blooming glow and breathing pulse.
-  - CRT screen scanlines and subtle plastic noise micro-texture overlay.
-  - Mechanical spring-loaded button physics (`cubic-bezier(0.175, 0.885, 0.32, 1.275)`).
-- **Interactive Telemetry Console / Terminal**:
-  - Live command execution (`help`, `whoami`, `skills`, `experience`, `metrics`, `education`, `contact`, `download-cv`, `clear`).
-  - Live system diagnostics and multi-agent execution cycle simulator.
+A personal portfolio and interactive CV of **Alexandros-Nektarios Giannakopoulos** (Data Scientist & Agentic AI Engineer at EY Greece, MSc Data Analytics Candidate).
 
 ---
 
